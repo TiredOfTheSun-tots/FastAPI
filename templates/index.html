@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ка.Но.Бу</title>
+    <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Что пиздатее</h1>
+        <div>
+            <button class="card" id="card-container"></button>
+            <button class="card"></button>
+        </div>
+    </div>
+        <script>
+            // Функция для получения случайной карточки с сервера
+            async function fetchRandomCard() {
+                const response = await fetch('http://127.0.0.1:8000/random_card');
+                if (response.ok) {
+                    const card = await response.json();
+                    // Очищаем контейнер перед добавлением новых данных
+                    const container = document.getElementById('card-container');
+                    container.innerHTML = '';
+                    // Создаём и добавляем карточку
+                    const div = document.createElement('div');
+                    // div.classList.add('card');
+                    div.innerHTML = `
+                        <p>${card.title}</p>
+                        <p>${card.description}</p>
+                    `;
+                    container.appendChild(div);
+                } else {
+                    // Если карточка не найдена, показываем сообщение об ошибке
+                    const container = document.getElementById('card-container');
+                    container.innerHTML = '<p>Card not found.</p>';
+                }
+            }
+            // Загрузка случайной карточки при старте страницы
+            window.onload = fetchRandomCard;
+            // Добавление обработчика события для кнопки
+            document.getElementById('card-container').addEventListener('click', fetchRandomCard);
+        </script>
+    </body>
+</html>

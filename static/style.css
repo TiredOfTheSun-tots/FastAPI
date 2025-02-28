@@ -1,0 +1,28 @@
+body {
+     text-align: center;
+     height: 100vh;
+     background-color: #7792bd;
+}
+
+div {
+     background-color: blueviolet;
+}
+
+.main {
+     color: aliceblue;
+}
+
+.card {
+     height: 50px;
+     width: 150px;
+     background-color: green;
+     border: 3px solid firebrick;
+     border-radius: 10px;
+     font-weight: bold;
+     text-align: center;
+}
+
+.card:hover {
+     background-color: greenyellow;
+}
+
